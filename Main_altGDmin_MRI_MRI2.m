@@ -85,14 +85,13 @@ for jj = 1:1:numel(filenames)
         Zhat=L+Ehat;
         Zhat_MRI2=reshape(Zhat,n1,n2,q);
         Time_MRI2=  toc;
-        %save('C:\Users\sbabu\Desktop\Result\brain_8\Xhat_MGDS.mat', 'Xhat_MGDS');
         Error_MRI2=RMSE_modi(Zhat_MRI2,X_image);
         similarity_index=[];
         for i =1:1:q
             mssim=ssim(abs(Zhat_MRI2(:,:,i)/max(max(Zhat_MRI2(:,:,i)))),abs(X_image(:,:,i)/max(max(X_image(:,:,i)))));
             similarity_index(i)=mssim;
         end
-        sim_MRI2=min(similarity_index)
+        sim_MRI2=min(similarity_index);
     
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AltgdMin + MEC %%%%%%%%%%%%%%%%%%%%
@@ -125,8 +124,7 @@ for jj = 1:1:numel(filenames)
             mssim=ssim(abs(Zhat_MRI(:,:,i)/max(max(Zhat_MRI(:,:,i)))),abs(X_image(:,:,i)/max(max(X_image(:,:,i)))));
             similarity_index(i)=mssim;
         end
-        sim_MRI=min(similarity_index)
-        %save('C:\Users\sbabu\Desktop\Result\brain_8\Xhat_MGD_MEC.mat', 'Xhat_GD_MEC');
+        sim_MRI=min(similarity_index);
         fprintf(fid, '%s(%d) & %8.4f (%5.2f)& %8.4f (%5.2f) \n', name, radial(ii),Error_MRI,Time_MRI,Error_MRI2,Time_MRI2);
         fprintf(fid2, '%s(%d) &  %8.4f (%5.2f)& %8.4f (%5.2f)  \n', name, radial(ii),sim_MRI,Time_MRI,sim_MRI2,Time_MRI2);
  
