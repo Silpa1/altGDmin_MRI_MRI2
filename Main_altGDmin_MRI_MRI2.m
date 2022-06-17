@@ -13,7 +13,7 @@ fprintf(fid2, '%s(%s) & %s & %s   \n','Dataset','Radial','altGDmin-MRI','altGDmi
 for jj = 1:1:numel(filenames)
     Ehat = load(filenames{jj});
     [~,name,~] = fileparts(filenames{jj});
-    radial=[4];
+    radial=[4,8,16];
     X_image=double(cell2mat(struct2cell(Ehat)));
     
    
