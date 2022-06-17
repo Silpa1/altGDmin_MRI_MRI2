@@ -48,9 +48,9 @@ for jj = 1:1:numel(filenames)
         [zbar_hat,flag,resNE,iter] = cgls(@Afft,@Att, Y,0,1e-36,10);
         Ytemp=reshape(Afft(zbar_hat),[m,q]);
         Ybar=Y-Ytemp;
-        [Uhat]=initAltGDMin(Ybar);
-        [Uhat2, Bhat2]=AltGDmin(T,Uhat,Ybar);
-        X_hat=Uhat2*Bhat2;
+        [U0]=initAltGDMin(Ybar);
+        [Uhat, Bhat]=AltGDmin(T,U0,Ybar);
+        X_hat=Uhat*Bhat;
        
         
         param.Samp_loc=Samp_loc;
@@ -105,9 +105,9 @@ for jj = 1:1:numel(filenames)
         [zbar_hat,flag,resNE,iter] = cgls(@Afft,@Att, Y,0,1e-36,10);
         Ytemp=reshape(Afft(zbar_hat),[m,q]);
         Ybar=Y-Ytemp;
-        [Uhat]=initAltGDMin(Ybar);
-        [Uhat2, Bhat2]=AltGDmin(T,Uhat,Ybar);
-        X_hat=Uhat2*Bhat2;
+        [U0]=initAltGDMin(Ybar);
+        [Uhat, Bhat]=AltGDmin(T,U0,Ybar);
+        X_hat=Uhat*Bhat;
         
         Yhat_hat=Y-Afft(X_hat+zbar_hat);
         Ehat=[];
